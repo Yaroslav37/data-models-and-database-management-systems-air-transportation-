@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой README</title>
 </head>
 <body>
     <h1>Тема: Авиаперевозки</h1>
