@@ -183,7 +183,7 @@
         <p>Связи: Связь с сущностью Flights One-to-Many</p>
     </ul>
     <h2>Схема БД</h2>
-    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/44160900-a9aa-44ba-84bc-c7f96236f05f" alt="схема БД">
+    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/8406b919-9654-49ed-8d5e-102377b26769" alt="схема БД">
 
 </body>
 </html>
