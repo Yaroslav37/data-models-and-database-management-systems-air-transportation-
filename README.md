@@ -72,13 +72,14 @@
     <h3>Пользователь (Users):</h3>
     <ul>
         <li>user_id (Идентификатор пользователя): INT (Primary Key)</li>
+        <li>role_id (Идентификатор роли): INT (Foreign Key)</li>
         <li>first_name (Имя): VARCHAR</li>
         <li>last_name (Фамилия): VARCHAR</li>
         <li>email (Адрес электронной почты): VARCHAR (уникальное значение)</li>
         <li>password (Пароль): VARCHAR (хешированный пароль)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Относится к ролям через таблицу UserRole (Many-to-Many), Booking One-to-Many.</p>
+        <p>Связи: Связь с сущностью Role (пользователь) Many-to-One, Booking One-to-Many.</p>
     </ul>
     <h3>Роль (Roles):</h3>
     <ul>
@@ -86,15 +87,7 @@
         <li>role_name (Название роли): VARCHAR (уникальное значение)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений.</p>
-        <p>Связи: Назначается пользователям через таблицу UserRole (Many-to-Many).</p>
-    </ul>
-    <h3>Роль пользователя (UserRoles):</h3>
-    <ul>
-        <li>user_id (Идентификатор пользователя): INT (Foreign Key)</li>
-        <li>role_id (Идентификатор роли): INT (Foreign Key)</li>
-        </br>
-        <p>Ограничения: Уникальная комбинация user_id и role_id.</p>
-        <p>Связи: Связь с сущностями User (пользователь) и Role (роль)</p>
+        <p>Связи: Связь с сущностью User (пользователь) One-to-Many, Booking One-to-Many.</p>
     </ul>
     <h3>Журнал действий пользователя (UserActionLogs):</h3>
     <ul>
