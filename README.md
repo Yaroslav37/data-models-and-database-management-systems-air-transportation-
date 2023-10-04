@@ -36,9 +36,9 @@
                 <li>Запись даты, времени и идентификатора пользователя при каждом действии</li>
             </ul>
         </li>
-        <li>Бронирование билетов:
+        <li>Покупка билетов:
             <ul>
-                <li>Регистрация всех действий, совершаемых пользователями в системе</li>
+                <li>Регистрация всех покупок, совершаемых пользователями в системе</li>
                 <li>Указания информации о пассажирах, включая их имена и номера документов</li>
             </ul>
         </li>
@@ -79,7 +79,7 @@
         <li>password (Пароль): VARCHAR (хешированный пароль)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений</p>
-        <p>Связи: Связь с сущностью Role (пользователь) Many-to-One, Booking One-to-Many.</p>
+        <p>Связи: Связь с сущностью Role (пользователь) Many-to-One, Ticket One-to-Many(optional).</p>
     </ul>
     <h3>Роль (Roles):</h3>
     <ul>
@@ -99,25 +99,14 @@
         <p>Ограничения: Нет дополнительных ограничений.</p>
         <p>Связи: Связь с сущностью User (пользователь) Many-to-One.</p>
     </ul>
-    <h3>Бронирование билетов (Bookings):</h3>
-    <ul>
-        <li>booking_id (Идентификатор бронирования): INT (Primary Key)</li>
-        <li>created_date_time (Дата и время создания): DATETIME</li>
-        <li>status (Статус бронирования): VARCHAR</li>
-        </br>
-        <li>user_id (Идентификатор пользователя): INT (Foreign Key) - пользователь, создавший бронирование</li>
-        <p>Ограничения: Нет дополнительных ограничений.</p>
-        <p>Связи: </p>
-    </ul>
     <h3>Билет (Tickets):</h3>
     <ul>
         <li>ticket_id (Идентификатор билета): INT (Primary Key)</li>
-        <li>booking_id (Идентификатор бронирования): INT (Foreign Key) - связывает билет с бронированием</li>
         <li>ticket_number (Уникальный номер билета): VARCHAR (уникальный номер билета)</li>
         <li>passenger_info (Информация о пассажире): JSON или другой формат данных для хранения информации о пассажире</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений.</p>
-        <p>Связи: Связь с сущностью Booking (бронирование) Many-to-One, с TicketFlights One-to-Many (по желанию).</p>
+        <p>Связи: Связь с сущностью User Many-to-One, с TicketFlights One-to-Many (optional), с BoardingPasses One-to-Many(optional).</p>
     </ul>
     <h3>Посадочный талон (BoardingPasses):</h3>
     <ul>
@@ -126,20 +115,57 @@
         <li>seat_info (Информация о месте в самолете): VARCHAR (информация о месте в самолете)</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений.</p>
-        <p>Связи: Связь с сущностью Ticket (билет) Many-to-One.</p>
+        <p>Связи: Связь с сущностью Ticket (билет) Many(optional)-to-One.</p>
     </ul>
     <h3>Авиарейс (Flights):</h3>
     <ul>
         <li>flight_id (Идентификатор рейса): INT (Primary Key)</li>
+        <li>aircraft_model_id (Идентификатор модели самолета): Уникальный целочисленный идентификатор (Foreign Key)</li>
         <li>departure_airport_id (Идентификатор аэропорта отправления): INT (Foreign Key) - связывает рейс с аэропортом отправления</li>
         <li>arrival_airport_id (Идентификатор аэропорта назначения): INT (Foreign Key) - связывает рейс с аэропортом назначения</li>
-        <li>departure_datetime (Дата и время вылета): DATETIME</li>
-        <li>arrival_datetime (Дата и время прилета): DATETIME</li>
-        <li>available_seats (Количество доступных мест): INT</li>
+        <li>flight_no (Номер рейса): INT</li>
+        <li>sheвuled_departure_datetime (Дата и время вылета по расписанию): DATETIME</li>
+        <li>sheduled_arrival_datetime (Дата и время прилета по расписанию): DATETIME</li>
+        <li>actual_departure_datetime (Дата и время вылета фактическое): DATETIME</li>
+        <li>actual_arrival_datetime (Дата и время прилета фактическое): DATETIME</li>
         </br>
         <p>Ограничения: Нет дополнительных ограничений.</p>
-        <p>Связи: Связь с сущностью Airport Many-to-One, TicketFlights One-to-Many (по желанию).</p>
+        <p>Связи: Связь с сущностью Airports Many-to-Many, TicketFlights One-to-Many, Aircrafts One-to-One.</p>
     </ul>
+    <h3>Модель самолета (AircraftModels):</h3>
+    <ul>
+        <li>aircraft_model_id (Идентификатор модели самолета): Уникальный целочисленный идентификатор (Primary Key)</li>
+        <li>model_name (Название модели): Строка</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Связи: Связь с сущностью Seats(места) One-to-Many, Flights One-to-One</p>
+    </ul>
+    <h3>Места (Seats):</h3>
+    <ul>
+        <li>aircraft_model_id (Идентификатор модели самолета): INT (Foreign Key)</li>
+        <li>seat_no (Номер посадочного места): INT</li>
+        <li>is_availible (информация о доступности): BOOL</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Связи: Связь с сущностью Aircrafts Many-to-One</p>
+    </ul>
+    <h3>Аэропорт (Airports):</h3>
+    <ul>
+        <li>airport_id (Идентификатор Аэропорта): INT (Primary Key)</li>
+        <li>airport_name (Название аэропорта): VARCHAR</li>
+        <li>city (название города): VARCHAR</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Связи: Связь с сущностью Flights Many-to-Many</p>
+    </ul>
+    <h3>Перелеты (TicketFlights):</h3>
+    <ul>
+        <li>ticket_id (Идентификатор билета): INT (Foreign Key)</li>
+        <li>flight_id (Идентификатор рейса): INT (Foreign Key)</li>
+        <li>amount (количество перелетов): INT</li>
+        </br>
+        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Связи: Связь с сущностью Flights Many-to-One, Tickets Many-to-One</p>
     </ul>
     <h2>Схема БД</h2>
     <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/8406b919-9654-49ed-8d5e-102377b26769" alt="схема БД">
