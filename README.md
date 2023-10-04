@@ -168,7 +168,7 @@
         <p>Связи: Связь с сущностью Flights Many-to-One, Tickets Many-to-One</p>
     </ul>
     <h2>Схема БД</h2>
-    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/8406b919-9654-49ed-8d5e-102377b26769" alt="схема БД">
+    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/055a6de9-608e-4a60-b3d1-1c1e49ef65c7" alt="схема БД">
 
 </body>
 </html>
