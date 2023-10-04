@@ -78,7 +78,7 @@
         <li>email (Адрес электронной почты): VARCHAR (уникальное значение)</li>
         <li>password (Пароль): VARCHAR (хешированный пароль)</li>
         </br>
-        <p>Ограничения: Нет дополнительных ограничений</p>
+        <p>Ограничения: Email является уникальным</p>
         <p>Связи: Связь с сущностью Role (пользователь) Many-to-One, Ticket One-to-Many(optional).</p>
     </ul>
     <h3>Роль (Roles):</h3>
@@ -103,9 +103,8 @@
     <ul>
         <li>ticket_id (Идентификатор билета): INT (Primary Key)</li>
         <li>ticket_number (Уникальный номер билета): VARCHAR (уникальный номер билета)</li>
-        <li>passenger_info (Информация о пассажире): JSON или другой формат данных для хранения информации о пассажире</li>
         </br>
-        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Ограничения:  Уникальность номера билета</p>
         <p>Связи: Связь с сущностью User Many-to-One, с TicketFlights One-to-Many (optional), с BoardingPasses One-to-Many(optional).</p>
     </ul>
     <h3>Посадочный талон (BoardingPasses):</h3>
@@ -129,7 +128,7 @@
         <li>actual_departure_datetime (Дата и время вылета фактическое): DATETIME</li>
         <li>actual_arrival_datetime (Дата и время прилета фактическое): DATETIME</li>
         </br>
-        <p>Ограничения: Нет дополнительных ограничений.</p>
+        <p>Ограничения:  Фактическое время не может быть раньше запланированного времени.</p>
         <p>Связи: Связь с сущностью Airports Many-to-Many, TicketFlights One-to-Many, Aircrafts One-to-One.</p>
     </ul>
     <h3>Модель самолета (AircraftModels):</h3>
@@ -168,7 +167,7 @@
         <p>Связи: Связь с сущностью Flights Many-to-One, Tickets Many-to-One</p>
     </ul>
     <h2>Схема БД</h2>
-    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/055a6de9-608e-4a60-b3d1-1c1e49ef65c7" alt="схема БД">
+    <img src="https://github.com/Yaroslav37/data-models-and-database-management-systems-air-transportation-/assets/94055866/3a8f3c30-e51a-40db-8e3f-a516d4fbb18e" alt="схема БД">
 
 </body>
 </html>
