@@ -73,6 +73,7 @@
     <ul>
         <li>user_id (Идентификатор пользователя): INT (Primary Key)</li>
         <li>role_id (Идентификатор роли): INT (Foreign Key)</li>
+        <li>ticket_id (Идентификатор билета): (Foreign Key)</li>
         <li>first_name (Имя): VARCHAR</li>
         <li>last_name (Фамилия): VARCHAR</li>
         <li>email (Адрес электронной почты): VARCHAR (уникальное значение)</li>
